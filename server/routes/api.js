@@ -30,6 +30,7 @@ exports.createOrder = (req, res) => {
 };
 
 exports.updateOrder = (req, res) => {
+  console.log("inside updateOrder in api ", req.body);
   dbHelpers.updateOrder(req.body, (order) => {
     res.send(order);
   });

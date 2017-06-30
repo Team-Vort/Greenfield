@@ -13,4 +13,13 @@
   float: right;
   color: #ff4d4d;
   font-size: 1.5em;
+  cursor: pointer;
+}
+
+.change-status-button{
+  cursor: pointer;
+}
+
+.heading {
+
 }

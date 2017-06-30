@@ -150,6 +150,7 @@ exports.updateOrder = function (queryObj, cb) {
   //same code as createOrder, but simply do not pass in
   // {id: } in the queryObj and it will be treated as an update
   //rather than a creation.
+  console.log("inside dbQuery", queryObj);
   new WorkOrder(queryObj).save()
     .then(function (model) {
       cb(model);

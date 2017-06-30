@@ -7,25 +7,31 @@ angular.module('work-orders')
 
   this.show = false;
   this.expandOrder = function(order){
-    dataHandler.orderInformation(order);
+    dataHandler.setOrderInfo(order);
     this.show = !this.show;
+    console.log($scope.orders)
   }
 
   this.toggle = function() {
     this.show = !this.show;
-    console.log(this.show);
   }
   .bind(this);
   var app = this;
 
   this.getWorkOrders = function () {
+    // console.log("in get work orders")
     $http.get('/get-orders')
     .then(function(res) {
       app.workOrders = res.data;
       $scope.orders = app.workOrders;
+      console.log(res.data);
     });
-  };
-  this.getWorkOrders()
+  }.bind(this);
+  this.getWorkOrders();
+
+  this.testFunc = function() {
+    console.log("TESTTESTTESTTEST");
+  }
 
   this.createWorkOrder = (e) => {
     console.log('$ctrl model binds for work-order submit: ', this.woJobDetails, this.woEstimatedDuration, this.woClientName, this.woPhotoUrl);

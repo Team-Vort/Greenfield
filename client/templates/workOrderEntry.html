@@ -1,22 +1,22 @@
 <!-- work order entry view template -->
 <div class="panel panel-primary">
   <div class="panel-heading text-center">
-    <h5>Work Order #1236 - In Progress</h5>
+    <h5>{{$ctrl.order.job_info}}</h5>
   </div>
   <div class="panel-body">
     <div class="row">
 
       <!-- Work order image -->
       <div class="col-md-6">
-        <img src="https://c1.staticflickr.com/4/3446/3932292651_cd0bc7a74e_b.jpg" alt="broken pipe" width="180">
+        <img src="{{$ctrl.order.photo}}" alt="broken pipe" width="180">
       </div>
 
       <!-- Work order details -->
       <div class="col-md-6">
         <ul class="list-group">
-          <li class="list-group-item"><b>Created:</b> {{$ctrl.information.created_at}}</li>
-          <li class="list-group-item"><b>Estimated time:</b> {{$ctrl.information.duration}}</li>
-          <li class="list-group-item"><b>Client:</b> {{order[0].client}}</li>
+          <li class="list-group-item"><b>Created:</b> {{$ctrl.order.created_at}}</li>
+          <li class="list-group-item"><b>Estimated time:</b> {{$ctrl.order.duration}}</li>
+          <li class="list-group-item"><b>Client:</b> {{$ctrl.order.client}}</li>
         </ul>
     </div>
   </div>
