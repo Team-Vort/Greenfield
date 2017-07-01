@@ -1,7 +1,7 @@
 <div class="container">
   <!-- nav.html template file goes here -->
   <nav class="navbar navbar-inverse">
-    <navigation />
+    <navigation show-logout="$ctrl.isContentHidden"/>
   </nav>
   <div ng-show="$ctrl.isContentHidden">
     <login-signup />

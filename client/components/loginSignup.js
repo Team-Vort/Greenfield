@@ -4,14 +4,14 @@ angular.module('work-orders')
   this.isHidden = false;
 
   this.showContent = function () {
-    $scope.$parent.$ctrl.isContentHidden = false;
+    this.parent.isContentHidden = false;
   };
 })
 
 .component('loginSignup', {
+  require: {
+    parent: '^^app'
+  },
   controller: 'LoginSignupCtrl',
   templateUrl: '../templates/loginSignup.html',
-  // bindings: {
-  //   isContentHidden: "="
-  // }
 });

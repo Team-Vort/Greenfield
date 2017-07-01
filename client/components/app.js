@@ -6,6 +6,7 @@ angular.module('work-orders')
   app.completeWorkOrders = 0;
   app.inProgressWorkOrders = 0;
 
+// hides logged in content and only display signup/login
   app.isContentHidden = true;
 
   this.getWorkOrders = function () {

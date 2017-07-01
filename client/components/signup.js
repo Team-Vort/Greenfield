@@ -1,9 +1,9 @@
 angular.module('work-orders')
 
-.controller('UserSignupCtrl', function($scope, $http) {
+.controller('UserSignupCtrl', function($scope, loginService) {
 
   this.showLogin = function () {
-    $scope.$parent.$ctrl.isHidden = true;
+    this.parent.isHidden = true;
   };
 
   this.createUser = function () {
@@ -14,21 +14,23 @@ angular.module('work-orders')
       password: $scope.userPass,
       date: new Date()
     };
-    console.log(userData);
-    // $scope.$parent.$ctrl.signUser(userData, function (signUpRes) {
-    //   if (signUpRes === false) {
-    //     $scope.signUpRes = "There was an error signing up. Please try again!";
-    //   }
-    // });
-  }
 
-  // this.showLogIn = function () {
-  //   $scope.$parent.$ctrl.isLogInHidden = false;
-  //   $scope.$parent.$ctrl.isSignUpHidden = true;
-  // }
+    loginService.postUser(userData, function (signUpRes) {
+      if (signUpRes === false) {
+        $scope.signUpRes = "There was an error signing up. Please try again!";
+        console.log("error")
+      } else {
+        this.parent.showContent();
+        console.log("success")
+      }
+    }.bind(this));
+  }
 })
 
 .component('signup', {
+  require: {
+    parent: '^^loginSignup'
+  },
   controller: 'UserSignupCtrl',
   templateUrl: '../templates/signup.html',
 });
