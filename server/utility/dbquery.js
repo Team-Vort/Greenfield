@@ -168,10 +168,21 @@ exports.deleteOrder = function (queryObj, cb) {
     });
 };
 
-//uses same logic as updateOrder
+//update user data
 exports.updateUser = function (queryObj, cb) {
-  new user(queryObj)
-  .save()
+  new User(queryObj)
+  .where({username: queryObj.username})
+  .save(queryObj, {method:"update"})
+  .then(function (model) {
+    cb(model);
+  });
+};
+
+//get all users
+exports.getAll = function (queryObj, cb) {
+  new User(queryObj)
+  .where(queryObj)
+  .fetchAll()
   .then(function (model) {
     cb(model);
   });

@@ -5,14 +5,21 @@
 var fileToServe = require('../utility/paths');
 var dbHelpers = require('../utility/dbquery');
 
+exports.getAll = (req, res) => {
 
-exports.userSignUp = (req, res) => {
-
-  dbHelpers.addUser(req.body, (user) => {
-    res.send(user);
+  dbHelpers.getAll(req.body, (users) => {
+    res.send(users);
   });
 
 
+};
+
+exports.userSignUp = (req, res) => {
+  dbHelpers.addUser(req.body, (newUser) => {
+    dbHelpers.getUser(req.body, (user) => {
+      res.send(user);
+    });
+  });
 };
 
 exports.userSignIn = (req, res) => {

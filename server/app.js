@@ -73,6 +73,8 @@ app.get('/get-orders-selective/:isDone', api.getOrdersSelective);
 app.get('get-orders-username/:username', api.getOrdersUsername);
 app.put('/update-user', api.updateUser);//can update photo url or any other user data
 
+app.get('/all-users', api.getAll); //testing purposes only
+
 // app.get('*', api.root); // redirect all others to the site root
 
 
