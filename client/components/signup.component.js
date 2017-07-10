@@ -10,6 +10,7 @@ angular.module('work-orders')
     var userData = {
       first_name: $scope.firstName,
       last_name: $scope.lastName,
+      phone: $scope.phoneNumber,
       username: $scope.userName,
       password: $scope.userPass,
       photo: "assets/images/default-user-image.png", // sets a default photo for a user profile pic
@@ -22,7 +23,7 @@ angular.module('work-orders')
         console.log("error")
       } else {
         this.parent.showContent();
-        this.parent.showWorkOrders();
+        // this.parent.showWorkOrders();
         console.log("success")
       }
     }.bind(this));

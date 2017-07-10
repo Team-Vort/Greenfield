@@ -3,7 +3,7 @@
 
 <!-- work order heading -->
   <div class="panel-heading text-center">
-    <h5>Work Order # {{$ctrl.index + 1}} : {{$ctrl.order.job_info.slice(0,51)}} ...</h5>
+    <h5>Work Order # {{$ctrl.order.id}} : {{$ctrl.order.job_info.slice(0,80)}} ...</h5>
   </div>
   <div class="panel-body">
     <div class="row">
@@ -17,8 +17,10 @@
       <div class="col-md-6">
         <ul class="list-group">
           <li class="list-group-item"><b>Created:</b> {{$ctrl.order.created_at}}</li>
-          <li class="list-group-item"><b>Estimated time:</b> {{$ctrl.order.duration}}</li>
+          <li class="list-group-item"><b>Billable Hours:</b> {{$ctrl.order.duration}}</li>
           <li class="list-group-item"><b>Client:</b> {{$ctrl.order.client}}</li>
+          <li class="list-group-item"><b>Created By:</b> {{$ctrl.order.username}}</li>
+          <li class="list-group-item"><b>Accepted By: </b> {{$ctrl.order.workername}}</li>
         </ul>
     </div>
   </div>

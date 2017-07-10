@@ -21,7 +21,7 @@
 
         <!-- Estimated Duration -->
         <div class="input-group">
-          <span class="input-group-addon" id="basic-addon1">Estimated Duration:</span>
+          <span class="input-group-addon" id="basic-addon1">Billable Hours:</span>
           <input type="text" class="form-control wo-estimated-duration" ng-model="$ctrl.woEstimatedDuration" placeholder="Ex: 6 hours, 4 weeks, 12 business days" aria-describedby="basic-addon1">
           <span class="input-group-addon required-input" id="basic-addon1"><i>required</i></span>
         </div>
@@ -46,16 +46,29 @@
           </div>
 
 
-        <!-- Button for creating new work orders -->
-        <button type="button" class="btn btn-lg btn-primary bt-create-work-order" data-dismiss="alert" ng-click="$ctrl.createWorkOrder($event); $ctrl.appGetWorkOrders()">Submit</button>
-
       </div>
+        <!-- Button for creating new work orders -->
+        <button type="button" class="btn btn-lg btn-primary bt-create-work-order" data-dismiss="alert" ng-click="$ctrl.createWorkOrder($event);">Submit</button>
+        <!-- Removing ng-click="$ctrl.createWorkOrder($event); $ctrl.appGetWorkOrders()" and replacing with ng-click="$ctrl.createWorkOrder($event);" to fix loading bug -->
     </div>
   </div>
 
+<div>
+  <tr>
+    <div style="display: inline-block; margin-left: 3em; margin-right: 3em; margin-bottom: .5em;">
+      <button type="button" class="btn btn-md btn-primary bt-display-orders" data-dismiss="alert" ng-click="$ctrl.appGetWorkOrders();">ALL ORDERS</button>
+      <button type="button" class="btn btn-md btn-primary bt-display-orders" data-dismiss="alert" ng-click="$ctrl.appGetUnclaimed();">ALL UNCLAIMED ORDERS</button>
+    </div>
+    <div style="display: inline-block; margin-left: 3em; margin-right: 3em; margin-top: .5em; margin-bottom: 1em;">
+      <button type="button" class="btn btn-md btn-primary bt-display-orders" data-dismiss="alert" ng-click="$ctrl.appGetMyInProgress();">MY IN PROGRESS ORDERS</button>
+      <button type="button" class="btn btn-md btn-primary bt-display-orders" data-dismiss="alert" ng-click="$ctrl.appGetMyCreated();">MY CREATED ORDERS</button>
+      <button type="button" class="btn btn-md btn-primary bt-display-orders" data-dismiss="alert" ng-click="$ctrl.appGetCompleted();">MY COMPLETED ORDERS</button>
+    </div>
+  </tr>
+</div>
   <!-- Expanded view to show work order details.  TODO: make this show up where the mouse was clicked as popup instead of near the top of the page in a statically located DIV.  (If there are many work orders, you have to scroll up to view the detail view.  Not a great user experience.) -->
   <div ng-if="$ctrl.show">
-    <work-order-expanded toggle="$ctrl.toggle"  app-get-work-orders="$ctrl.appGetWorkOrders" app-work-order="$ctrl.appWorkOrders"/>
+    <work-order-expanded toggle="$ctrl.toggle" app-get-unclaimed="$ctrl.appGetUnclaimed" app-get-my-in-progress="$ctrl.appGetMyInProgress" app-get-my-created="$ctrl.appGetMyCreated" app-get-completed="$ctrl.appGetCompleted" app-get-work-orders="$ctrl.appGetWorkOrders" app-work-order="$ctrl.appWorkOrders"/>
   </div>
     <div class="entry-feed-section">
       <work-order-entry class="eachEntry" ng-repeat="(orderIndex, order) in $ctrl.appWorkOrders" app-get-work-orders="$ctrl.appGetWorkOrders" order="order" index="orderIndex" ng-click="$ctrl.expandOrder(order, orderIndex)" />

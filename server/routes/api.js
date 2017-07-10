@@ -11,6 +11,12 @@ exports.getAll = (req, res) => { // testing purpose only to get all users in db
   });
 };
 
+exports.getUser = (req, res) => {
+  dbHelpers.getUser(req.body, (user) => {
+    res.send(user);
+  });
+}
+
 exports.userSignUp = (req, res) => {
   dbHelpers.addUser(req.body, (newUser) => {
     dbHelpers.getUser(req.body, (user) => {
@@ -46,9 +52,33 @@ exports.getOrders = (req, res) => {
   });
 };
 
-exports.getOrdersSelective = (req, res) => {
-  var isDone = (req.params.isDone === '1') ? 1 : 0;
-  dbHelpers.getOrdersSelective({is_done: isDone}, (orders) => {
+exports.getUnclaimed = (req, res) => {
+  dbHelpers.getOrdersSelective({workername: null}, (orders) => {
+    res.send(orders);
+  });
+};
+exports.getCompleted = (req, res) => {
+  // console.log(req.params);
+  // var isDone = (req.params.isDone === '1') ? 1 : 0;
+  var phone = req.params.phone;
+  console.log('this is from api', phone, req.body)
+  dbHelpers.getOrdersSelective({workerphone: phone, is_done: true}, (orders) => {
+    res.send(orders);
+  });
+};
+
+exports.getMyCreated = (req, res) => {
+  var username = req.params.userName;
+  console.log('this is from api', username, req.body)
+  dbHelpers.getOrdersSelective({username: username}, (orders) => {
+    res.send(orders);
+  });
+};
+
+exports.getMyInProgress = (req, res) => {
+  var phone = req.params.phone;
+  console.log('this is from api', phone, req.body)
+  dbHelpers.getOrdersSelective({workerphone: phone, is_done: false}, (orders) => {
     res.send(orders);
   });
 };
@@ -73,6 +103,3 @@ exports.updateUser = (req, res) => {
     res.send(user);
   });
 };
-
-
-

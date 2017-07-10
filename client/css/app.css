@@ -7,8 +7,7 @@
 
 
 .bt-create-work-order {
-  margin-bottom: 5px;
-  margin-top: 5px;
+  margin-bottom: 1em;
 }
 
 /* Style Red 'X' on expanded work order view */
@@ -27,29 +26,50 @@
 }
 
 /* Make cursor change on hover over change status button */
-.change-status-button{
+/*.change-status-button{
   cursor: pointer;
-}
+}*/
 
 /* Change cursor to a pointer on hover over work order entries in list */
 .eachEntry {
   cursor: pointer;
 }
 
-/* Style Delete Work Order button in expanded view */
-.delete-key {
-  background: red;
+/* Style Accept Work Order button in expanded view */
+.accept-key {
+  background: green;
   cursor: pointer;
   color: white;
 }
 
-.delete-key:hover {
-  background: #b30000;
+.accept-key:hover {
+  background: #33cc33;
 }
 
 /* Style change status toggle button on expanded view */
-.change-status-button:hover {
-  background: #74a9d8;
+#done-button {
+  background: green;
+  cursor: pointer;
+  color: white;
+}
+#done-button:hover {
+  background: #33cc33;
+}
+
+#notes-list {
+  text-align: left;
+  margin: 1em;
+  margin-top: 0;
+}
+
+#notes-button {
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+.input-group {
+  margin-left: 1em;
+  margin-right: 1em;
 }
 
 /* This styles the text shown on "create new work order" when some of the required fields have not been entered */

@@ -46,22 +46,22 @@ angular.module('work-orders')
     var dateStr = currentDate.getFullYear() + '/' + currentDate.getMonth() + '/' + currentDate.getDate() + ' ' + currentDate.getHours() + ':' + currentDate.getMinutes() + ':' + currentDate.getSeconds();
 
     var queryObj = {
-      username: curUser.username,
+      username: curUser.first_name + ' ' + curUser.last_name,
+      userphone: curUser.phone, // grab phone number from database
       notes: '',
       job_info: this.woJobDetails,
       created_at: dateStr,
       is_done: false,
       duration: this.woEstimatedDuration,
       client: this.woClientName, //make schema use string not ID (don't need clients table?)
-      photo: this.woPhotoUrl,
+      photo: this.woPhotoUrl
     };
 
     this.sendNewOrder(queryObj, this.clearFields);
-
-
   };
 
   this.sendNewOrder = function (queryObj, cb) {
+    var that = this;
     //send HTTP POST to server to create new W.O.
     $http({
       method: 'POST',
@@ -69,6 +69,8 @@ angular.module('work-orders')
       data: queryObj
     })
       .then(function successCallback(res) {
+        //fixes refresh bug
+        that.appGetWorkOrders();
         cb();
       }, function errorCallback(res) {
         //Useful console log to see when there is an error.
@@ -93,6 +95,10 @@ angular.module('work-orders')
   },
   bindings: {
     appGetWorkOrders: '<', //**
+    appGetUnclaimed: '<',
+    appGetCompleted: '<',
+    appGetMyCreated: '<',
+    appGetMyInProgress: '<',
     appWorkOrders: '<'
   },
   controller: 'WorkOrderFeedCtrl',
